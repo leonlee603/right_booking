@@ -1,4 +1,5 @@
 "use server";
+
 import db from "./db";
 import {
   //auth,
@@ -16,12 +17,14 @@ export const createProfileAction = async (
 ) => {
   try {
     const user = await currentUser();
+    // if case for typescript
     if (!user) throw new Error("Please login to create a profile");
-    console.log(user);
 
+    // Validate form data
     const rawData = Object.fromEntries(formData);
     const validatedFields = profileSchema.parse(rawData);
 
+    // Add user profile to database
     await db.profile.create({
       data: {
         clerkId: user.id,
@@ -30,8 +33,8 @@ export const createProfileAction = async (
         ...validatedFields,
       },
     });
-    console.log(validatedFields);
 
+    // Add private metadata to clerk user
     (await clerkClient()).users.updateUserMetadata(user.id, {
       privateMetadata: {
         hasProfile: true,
@@ -39,7 +42,6 @@ export const createProfileAction = async (
     });
     // return { message: "Profile Created" };
   } catch (error) {
-    console.log(error);
     return {
       message: error instanceof Error ? error.message : "An error occurred",
     };
