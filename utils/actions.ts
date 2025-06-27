@@ -9,7 +9,8 @@ import {
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
-import { profileSchema, validateWithZodSchema } from "./schemas";
+import { imageSchema, profileSchema, validateWithZodSchema } from "./schemas";
+import { uploadImage } from "./supabase";
 
 const getAuthUser = async () => {
   const user = await currentUser();
@@ -121,6 +122,28 @@ export const updateProfileImageAction = async (
   prevState: unknown,
   formData: FormData
 ): Promise<{ message: string }> => {
-  console.log(prevState, formData);
-  return { message: "Profile image updated successfully" };
+  const user = await getAuthUser();
+
+  try {
+    const image = formData.get('image') as File;
+    // File size must be less than 3 MB
+    const validatedFields = validateWithZodSchema(imageSchema, { image });
+    const fullPath = await uploadImage(validatedFields.image);
+
+    await db.profile.update({
+      where: {
+        clerkId: user.id,
+      },
+      data: {
+        profileImage: fullPath,
+      },
+    });
+
+    revalidatePath('/profile');
+    
+    return { message: 'Profile image updated successfully' };
+  } catch (error) {
+    console.log(error);
+    return renderError(error);
+  }
 };

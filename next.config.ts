@@ -7,11 +7,23 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "img.clerk.com",
-        port: '',
-        pathname: '/**',
-        search: '',
+        port: "",
+        pathname: "/**",
+        search: "",
+      },
+      {
+        protocol: "https",
+        hostname: "gayuemooodkviqqnlnfk.supabase.co",
+        port: "",
+        pathname: "/**",
+        search: "",
       },
     ],
+  },
+  experimental: {
+    serverActions: {
+      bodySizeLimit: '5mb',
+    },
   },
 };
 
