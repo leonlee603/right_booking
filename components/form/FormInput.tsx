@@ -9,7 +9,7 @@ type FormInputProps = {
   placeholder?: string;
 };
 
-export default function FromInput(props: FormInputProps) {
+export default function FormInput(props: FormInputProps) {
   const { name, type, label, defaultValue, placeholder } = props;
   return (
     <div className="mb-2">

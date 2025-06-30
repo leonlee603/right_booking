@@ -9,7 +9,7 @@ import {
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
-import { imageSchema, profileSchema, validateWithZodSchema } from "./schemas";
+import { imageSchema, profileSchema, propertySchema, validateWithZodSchema } from "./schemas";
 import { uploadImage } from "./supabase";
 
 const getAuthUser = async () => {
@@ -147,4 +147,21 @@ export const updateProfileImageAction = async (
     // console.log(error);
     return renderError(error);
   }
+};
+
+export const createPropertyAction = async (
+  prevState: unknown,
+  formData: FormData
+): Promise<{ message: string }> => {
+  const user = await getAuthUser();
+
+  try {
+    const rawData = Object.fromEntries(formData);
+    const validatedFields = validateWithZodSchema(propertySchema, rawData);
+    
+    return {message: "Property created"};
+  } catch (error) {
+    return renderError(error);
+  }
+  // redirect('/');
 };

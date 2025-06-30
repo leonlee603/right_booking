@@ -1,6 +1,6 @@
 import SubmitButton from "@/components/form/Buttons";
 import FormContainer from "@/components/form/FormContainer";
-import FormInput from "@/components/form/FromInput";
+import FormInput from "@/components/form/FormInput";
 import ImageInputContainer from "@/components/form/ImageInputContainer";
 import {
   fetchProfile,
