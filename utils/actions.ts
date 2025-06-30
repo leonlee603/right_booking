@@ -126,6 +126,7 @@ export const updateProfileImageAction = async (
 
   try {
     const image = formData.get('image') as File;
+
     // File size must be less than 3 MB
     const validatedFields = validateWithZodSchema(imageSchema, { image });
     const fullPath = await uploadImage(validatedFields.image);
@@ -143,7 +144,7 @@ export const updateProfileImageAction = async (
     
     return { message: 'Profile image updated successfully' };
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     return renderError(error);
   }
 };

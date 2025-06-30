@@ -19,11 +19,12 @@ type ImageInputContainerProps = {
 
 export default function ImageInputContainer(props: ImageInputContainerProps) {
   const { image, name, action, text } = props;
-  const [isUpdateFormVisible, setUpdateFormVisible] = useState(false);
+  const [isUpdateFormVisible, setIsUpdateFormVisible] = useState(false);
 
   const userIcon = (
     <LuUser className="w-24 h-24 bg-primary rounded-md text-white mb-4" />
   );
+
   return (
     <div>
       {image ? (
@@ -41,7 +42,7 @@ export default function ImageInputContainer(props: ImageInputContainerProps) {
       <Button
         variant="outline"
         size="sm"
-        onClick={() => setUpdateFormVisible((prev) => !prev)}
+        onClick={() => setIsUpdateFormVisible((prev) => !prev)}
       >
         {text}
       </Button>
