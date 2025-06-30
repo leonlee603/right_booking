@@ -6,6 +6,8 @@ import CategoriesInput from "@/components/form/CategoriesInput";
 import TextAreaInput from "@/components/form/TextAreaInput";
 
 import { createPropertyAction } from "@/utils/actions";
+import CountriesInput from "@/components/form/CountriesInput";
+import ImageInput from "@/components/form/ImageInput";
 
 export default function CreateRentalPage() {
   return (
@@ -36,6 +38,10 @@ export default function CreateRentalPage() {
             name="description"
             labelText="Description (10 - 1000 Words)"
           />
+          <div className="grid sm:grid-cols-2 gap-8 mt-4">
+            <CountriesInput />
+            <ImageInput />
+          </div>
           <SubmitButton text="create rental" className="mt-12" />
         </FormContainer>
       </div>
