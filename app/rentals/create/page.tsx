@@ -4,10 +4,12 @@ import SubmitButton from "@/components/form/Buttons";
 import PriceInput from "@/components/form/PriceInput";
 import CategoriesInput from "@/components/form/CategoriesInput";
 import TextAreaInput from "@/components/form/TextAreaInput";
-
-import { createPropertyAction } from "@/utils/actions";
 import CountriesInput from "@/components/form/CountriesInput";
 import ImageInput from "@/components/form/ImageInput";
+import CounterInput from "@/components/form/CounterInput";
+import AmenitiesInput from "@/components/form/AmenitiesInput";
+
+import { createPropertyAction } from "@/utils/actions";
 
 export default function CreateRentalPage() {
   return (
@@ -42,6 +44,15 @@ export default function CreateRentalPage() {
             <CountriesInput />
             <ImageInput />
           </div>
+          <h3 className="text-lg mt-8 mb-4 font-medium">
+            Accommodation Details
+          </h3>
+          <CounterInput detail="guests" />
+          <CounterInput detail="bedrooms" />
+          <CounterInput detail="beds" />
+          <CounterInput detail="baths" />
+          <h3 className="text-lg mt-10 mb-6 font-medium">Amenities</h3>
+          <AmenitiesInput />
           <SubmitButton text="create rental" className="mt-12" />
         </FormContainer>
       </div>
