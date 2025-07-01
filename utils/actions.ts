@@ -9,7 +9,12 @@ import {
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
-import { imageSchema, profileSchema, propertySchema, validateWithZodSchema } from "./schemas";
+import {
+  imageSchema,
+  profileSchema,
+  propertySchema,
+  validateWithZodSchema,
+} from "./schemas";
 import { uploadImage } from "./supabase";
 
 const getAuthUser = async () => {
@@ -125,7 +130,7 @@ export const updateProfileImageAction = async (
   const user = await getAuthUser();
 
   try {
-    const image = formData.get('image') as File;
+    const image = formData.get("image") as File;
 
     // File size must be less than 3 MB
     const validatedFields = validateWithZodSchema(imageSchema, { image });
@@ -140,9 +145,9 @@ export const updateProfileImageAction = async (
       },
     });
 
-    revalidatePath('/profile');
-    
-    return { message: 'Profile image updated successfully' };
+    revalidatePath("/profile");
+
+    return { message: "Profile image updated successfully" };
   } catch (error) {
     // console.log(error);
     return renderError(error);
@@ -157,7 +162,7 @@ export const createPropertyAction = async (
 
   try {
     const rawData = Object.fromEntries(formData);
-    const file = formData.get('image') as File;
+    const file = formData.get("image") as File;
 
     const validatedFields = validateWithZodSchema(propertySchema, rawData);
     const validatedFile = validateWithZodSchema(imageSchema, { image: file });
@@ -173,5 +178,35 @@ export const createPropertyAction = async (
   } catch (error) {
     return renderError(error);
   }
-  redirect('/');
+  redirect("/");
+};
+
+export const fetchProperties = async ({
+  search = "",
+  category,
+}: {
+  search?: string;
+  category?: string;
+}) => {
+  const properties = await db.property.findMany({
+    where: {
+      category,
+      OR: [
+        { name: { contains: search, mode: "insensitive" } },
+        { tagline: { contains: search, mode: "insensitive" } },
+      ],
+    },
+    select: {
+      id: true,
+      name: true,
+      tagline: true,
+      country: true,
+      image: true,
+      price: true,
+    },
+    orderBy: {
+      createdAt: 'desc',
+    }
+  });
+  return properties;
 };
