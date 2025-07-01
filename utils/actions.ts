@@ -205,8 +205,8 @@ export const fetchProperties = async ({
       price: true,
     },
     orderBy: {
-      createdAt: 'desc',
-    }
+      createdAt: "desc",
+    },
   });
   return properties;
 };
