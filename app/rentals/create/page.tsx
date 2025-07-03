@@ -1,6 +1,6 @@
 import FormContainer from "@/components/form/FormContainer";
 import FormInput from "@/components/form/FormInput";
-import SubmitButton from "@/components/form/Buttons";
+import { SubmitButton } from "@/components/form/Buttons";
 import PriceInput from "@/components/form/PriceInput";
 import CategoriesInput from "@/components/form/CategoriesInput";
 import TextAreaInput from "@/components/form/TextAreaInput";

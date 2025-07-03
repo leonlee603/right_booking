@@ -6,7 +6,7 @@ import { useState } from "react";
 import { Button } from "../ui/button";
 import FormContainer from "./FormContainer";
 import ImageInput from "./ImageInput";
-import SubmitButton from "./Buttons";
+import { SubmitButton } from "./Buttons";
 import { type actionFunction } from "@/utils/types";
 
 type ImageInputContainerProps = {
