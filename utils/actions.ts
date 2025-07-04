@@ -256,9 +256,36 @@ export const toggleFavoriteAction = async (prevState: {
     }
 
     revalidatePath(pathname);
-    
-    return { message: favoriteId ? 'Removed from Faves' : 'Added to Faves' };
+
+    return { message: favoriteId ? "Removed from Faves" : "Added to Faves" };
   } catch (error) {
     return renderError(error);
   }
+};
+
+export const fetchFavorites = async () => {
+  const user = await getAuthUser();
+
+  const favorites = await db.favorite.findMany({
+    where: {
+      profileId: user.id,
+    },
+    orderBy: {
+      createdAt: "desc", // Orders by createdAt in ascending order
+    },
+    select: {
+      property: {
+        select: {
+          id: true,
+          name: true,
+          tagline: true,
+          price: true,
+          country: true,
+          image: true,
+        },
+      },
+    },
+  });
+
+  return favorites.map((favorite) => favorite.property);
 };
