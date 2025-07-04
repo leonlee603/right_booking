@@ -6,6 +6,7 @@ import ImageContainer from "@/components/properties/ImageContainer";
 import PropertyRating from "@/components/card/PropertyRating";
 import BookingCalendar from "@/components/properties/BookingCalendar";
 import PropertyDetails from "@/components/properties/PropertyDetails";
+import UserInfo from "@/components/properties/UserInfo";
 
 import { fetchPropertyDetails } from "@/utils/actions";
 
@@ -20,8 +21,10 @@ export default async function PropertyDetailsPage({
   if (!property) redirect("/");
 
   console.log(property);
+  
   const { baths, bedrooms, beds, guests } = property;
   const details = { baths, bedrooms, beds, guests };
+  const {firstName, profileImage} = property.profile;
 
   return (
     <section>
@@ -41,6 +44,7 @@ export default async function PropertyDetailsPage({
             <PropertyRating inPage propertyId={property.id} />
           </div>
           <PropertyDetails details={details} />
+          <UserInfo profile={{ firstName, profileImage }} />
         </div>
         <div className="lg:col-span-4 flex flex-col items-center">
           <BookingCalendar />
