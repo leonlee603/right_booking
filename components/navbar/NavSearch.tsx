@@ -6,7 +6,7 @@ import { Input } from "../ui/input";
 
 export default function NavSearch() {
   const searchParams = useSearchParams();
-  // const searchValue = searchParams.get("search")?.toString();
+  const searchValue = searchParams.get("search")?.toString();
   const pathname = usePathname();
   const { replace } = useRouter();
   const [search, setSearch] = useState(
@@ -24,10 +24,10 @@ export default function NavSearch() {
   }, 300);
 
   useEffect(() => {
-    if (!searchParams.get("search")) {
+    if (!searchValue) {
       setSearch("");
     } 
-  }, [searchParams.get("search")]);
+  }, [searchValue]);
   
   return (
     <Input
