@@ -29,7 +29,7 @@ export default function ShareButton({
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant='outline' size='icon' className='p-2'>
+        <Button variant='outline' size='icon' className='p-2 cursor-pointer'>
           <LuShare2 />
         </Button>
       </PopoverTrigger>

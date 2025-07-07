@@ -17,7 +17,7 @@ export default function LinksDropdown() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" className="flex gap-4 max-w-[100px]">
+        <Button variant="outline" className="flex gap-4 max-w-[100px] cursor-pointer">
           <LuAlignLeft className="w-6! h-6!" />
           <UserIcon />
         </Button>
@@ -26,13 +26,13 @@ export default function LinksDropdown() {
         <SignedOut>
           <DropdownMenuItem>
             <SignInButton mode="modal">
-              <button className="w-full text-left">Login</button>
+              <button className="w-full text-left cursor-pointer">Login</button>
             </SignInButton>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem>
             <SignUpButton mode="modal">
-              <button className="w-full text-left">Register</button>
+              <button className="w-full text-left cursor-pointer">Register</button>
             </SignUpButton>
           </DropdownMenuItem>
         </SignedOut>

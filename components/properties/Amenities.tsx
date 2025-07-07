@@ -1,0 +1,39 @@
+import { amenities as originalAmenitiesList, Amenity } from "@/utils/amenities";
+// import { LuFolderCheck } from "react-icons/lu";
+import Title from "./Title";
+
+export default function Amenities({ amenities }: { amenities: string }) {
+  const amenitiesList: Amenity[] = JSON.parse(amenities as string);
+  const amenitiesListWithIcon: Amenity[] = amenitiesList.map(
+    (amenity, index) => {
+      return { ...amenity, icon: originalAmenitiesList[index].icon };
+    }
+  );
+  const noAmenities = amenitiesList.every((amenity) => !amenity.selected);
+
+  if (noAmenities) {
+    return null;
+  }
+
+  return (
+    <div className="mt-4">
+      <Title text="What this place offers" />
+      <div className="grid md:grid-cols-2 gap-x-4">
+        {amenitiesListWithIcon.map((amenity) => {
+          if (!amenity.selected) {
+            return null;
+          }
+          return (
+            <div key={amenity.name} className="flex items-center gap-x-4 mb-2 ">
+              {/* <LuFolderCheck className="h-6 w-6 text-primary" /> */}
+              <amenity.icon className="h-5 w-5"/>
+              <span className="font-light text-sm capitalize">
+                {amenity.name}
+              </span>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
