@@ -10,6 +10,7 @@ import UserInfo from "@/components/properties/UserInfo";
 import { Separator } from "@/components/ui/separator";
 import Description from "@/components/properties/Description";
 import Amenities from "@/components/properties/Amenities";
+import DynamicMap from "@/components/properties/DynamicMapWrapper";
 
 import { fetchPropertyDetails } from "@/utils/actions";
 
@@ -22,8 +23,6 @@ export default async function PropertyDetailsPage({
   const property = await fetchPropertyDetails(id);
 
   if (!property) redirect("/");
-
-  console.log(property);
 
   const { baths, bedrooms, beds, guests } = property;
   const details = { baths, bedrooms, beds, guests };
@@ -51,6 +50,7 @@ export default async function PropertyDetailsPage({
           <Separator className="mt-4" />
           <Description description={property.description} />
           <Amenities amenities={property.amenities} />
+          <DynamicMap countryCode={property.country} />
         </div>
         <div className="lg:col-span-4 flex flex-col items-center">
           <BookingCalendar />
