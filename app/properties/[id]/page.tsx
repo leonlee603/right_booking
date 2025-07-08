@@ -13,6 +13,9 @@ import Amenities from "@/components/properties/Amenities";
 import DynamicMap from "@/components/properties/DynamicMapWrapper";
 import SubmitReview from "@/components/reviews/SubmitReview";
 import PropertyReviews from "@/components/reviews/PropertyReviews";
+import { findExistingReview } from '@/utils/actions';
+import { auth } from '@clerk/nextjs/server';
+
 
 import { fetchPropertyDetails } from "@/utils/actions";
 
@@ -29,6 +32,11 @@ export default async function PropertyDetailsPage({
   const { baths, bedrooms, beds, guests } = property;
   const details = { baths, bedrooms, beds, guests };
   const { firstName, profileImage } = property.profile;
+
+  const { userId } = await auth();
+  const isNotOwner = property.profile.clerkId !== userId;
+  const reviewDoesNotExist =
+    userId && isNotOwner && !(await findExistingReview(userId, property.id));
 
   return (
     <section>
@@ -58,7 +66,7 @@ export default async function PropertyDetailsPage({
           <BookingCalendar />
         </div>
       </section>
-      <SubmitReview propertyId={property.id} />
+      {reviewDoesNotExist && <SubmitReview propertyId={property.id} />}
       <PropertyReviews propertyId={property.id} />
     </section>
   );
