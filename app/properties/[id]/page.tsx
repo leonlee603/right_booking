@@ -11,6 +11,7 @@ import { Separator } from "@/components/ui/separator";
 import Description from "@/components/properties/Description";
 import Amenities from "@/components/properties/Amenities";
 import DynamicMap from "@/components/properties/DynamicMapWrapper";
+import SubmitReview from "@/components/reviews/SubmitReview";
 
 import { fetchPropertyDetails } from "@/utils/actions";
 
@@ -56,6 +57,7 @@ export default async function PropertyDetailsPage({
           <BookingCalendar />
         </div>
       </section>
+      <SubmitReview propertyId={property.id} />
     </section>
   );
 }
