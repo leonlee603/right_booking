@@ -12,6 +12,7 @@ import Description from "@/components/properties/Description";
 import Amenities from "@/components/properties/Amenities";
 import DynamicMap from "@/components/properties/DynamicMapWrapper";
 import SubmitReview from "@/components/reviews/SubmitReview";
+import PropertyReviews from "@/components/reviews/PropertyReviews";
 
 import { fetchPropertyDetails } from "@/utils/actions";
 
@@ -58,6 +59,7 @@ export default async function PropertyDetailsPage({
         </div>
       </section>
       <SubmitReview propertyId={property.id} />
+      <PropertyReviews propertyId={property.id} />
     </section>
   );
 }

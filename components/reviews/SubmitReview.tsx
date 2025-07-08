@@ -15,7 +15,7 @@ export default function SubmitReview({ propertyId }: { propertyId: string }) {
 
   return (
     <div className="mt-8">
-      <Button onClick={() => setIsReviewFormVisible((prev) => !prev)}>
+      <Button onClick={() => setIsReviewFormVisible((prev) => !prev)} className="cursor-pointer">
         Leave a Review
       </Button>
       {isReviewFormVisible && (
@@ -29,7 +29,7 @@ export default function SubmitReview({ propertyId }: { propertyId: string }) {
               defaultValue=""
               row={3}
             />
-            <SubmitButton text="Submit" className="mt-4" />
+            <SubmitButton text="Submit" className="mt-4 cursor-pointer" />
           </FormContainer>
         </Card>
       )}
