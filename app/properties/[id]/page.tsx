@@ -4,7 +4,7 @@ import FavoriteToggleButton from "@/components/card/FavoriteToggleButton";
 import ShareButton from "@/components/properties/ShareButton";
 import ImageContainer from "@/components/properties/ImageContainer";
 import PropertyRating from "@/components/card/PropertyRating";
-import BookingCalendar from "@/components/properties/BookingCalendar";
+
 import PropertyDetails from "@/components/properties/PropertyDetails";
 import UserInfo from "@/components/properties/UserInfo";
 import { Separator } from "@/components/ui/separator";
@@ -13,10 +13,10 @@ import Amenities from "@/components/properties/Amenities";
 import DynamicMap from "@/components/properties/DynamicMapWrapper";
 import SubmitReview from "@/components/reviews/SubmitReview";
 import PropertyReviews from "@/components/reviews/PropertyReviews";
-import { findExistingReview } from '@/utils/actions';
-import { auth } from '@clerk/nextjs/server';
+import DynamicBookingWrapper from "@/components/booking/DynamicBookingWrapper";
 
-
+import { findExistingReview } from "@/utils/actions";
+import { auth } from "@clerk/nextjs/server";
 import { fetchPropertyDetails } from "@/utils/actions";
 
 export default async function PropertyDetailsPage({
@@ -63,7 +63,11 @@ export default async function PropertyDetailsPage({
           <DynamicMap countryCode={property.country} />
         </div>
         <div className="lg:col-span-4 flex flex-col items-center">
-          <BookingCalendar />
+          <DynamicBookingWrapper
+            propertyId={property.id}
+            price={property.price}
+            bookings={property.bookings}
+          />
         </div>
       </section>
       {reviewDoesNotExist && <SubmitReview propertyId={property.id} />}

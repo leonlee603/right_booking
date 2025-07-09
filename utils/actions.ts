@@ -17,6 +17,7 @@ import {
   validateWithZodSchema,
 } from "./schemas";
 import { uploadImage } from "./supabase";
+import { calculateTotals } from "./calculateTotals";
 
 const getAuthUser = async () => {
   const user = await currentUser();
@@ -298,6 +299,12 @@ export const fetchPropertyDetails = async (id: string) => {
     },
     include: {
       profile: true,
+      bookings: {
+        select: {
+          checkIn: true,
+          checkOut: true,
+        },
+      },
     },
   });
 };
@@ -385,8 +392,8 @@ export const deleteReviewAction = async (prevState: { reviewId: string }) => {
       },
     });
 
-    revalidatePath('/reviews');
-    return { message: 'Review deleted successfully' };
+    revalidatePath("/reviews");
+    return { message: "Review deleted successfully" };
   } catch (error) {
     return renderError(error);
   }
@@ -394,7 +401,7 @@ export const deleteReviewAction = async (prevState: { reviewId: string }) => {
 
 export async function fetchPropertyRating(propertyId: string) {
   const result = await db.review.groupBy({
-    by: ['propertyId'],
+    by: ["propertyId"],
     _avg: {
       rating: true,
     },
@@ -423,4 +430,46 @@ export const findExistingReview = async (
       propertyId: propertyId,
     },
   });
+};
+
+export const createBookingAction = async (prevState: {
+  propertyId: string;
+  checkIn: Date;
+  checkOut: Date;
+}) => {
+  const user = await getAuthUser();
+
+  const { propertyId, checkIn, checkOut } = prevState;
+
+  const property = await db.property.findUnique({
+    where: { id: propertyId },
+    select: { price: true },
+  });
+
+  if (!property) {
+    return { message: "Property not found" };
+  }
+
+  const { orderTotal, totalNights } = calculateTotals({
+    checkIn,
+    checkOut,
+    price: property.price,
+  });
+
+  try {
+    const booking = await db.booking.create({
+      data: {
+        checkIn,
+        checkOut,
+        orderTotal,
+        totalNights,
+        profileId: user.id,
+        propertyId,
+      },
+    });
+    console.log(booking);
+  } catch (error) {
+    return renderError(error);
+  }
+  redirect("/bookings");
 };
