@@ -14,7 +14,7 @@ const name = "country";
 export default function CountriesInput({ defaultValue }: { defaultValue?: string }) {
   return (
     <div className="mb-2">
-      <Label htmlFor={name} className="capitalize">
+      <Label htmlFor={name} className="capitalize mb-2">
         country
       </Label>
       <Select

@@ -14,7 +14,7 @@ export default function CategoriesInput({ defaultValue }: { defaultValue?: strin
 
   return (
     <div className='mb-2'>
-      <Label htmlFor={name} className='capitalize'>
+      <Label htmlFor={name} className='capitalize mb-2'>
         Categories
       </Label>
       <Select
