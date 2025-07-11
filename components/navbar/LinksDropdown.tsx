@@ -39,7 +39,7 @@ export default function LinksDropdown() {
         <SignedIn>
           {links.map((link) => {
             return (
-              <DropdownMenuItem key={link.href}>
+              <DropdownMenuItem key={link.href} asChild>
                 <Link href={link.href} className="capitalize w-full">
                   {link.label}
                 </Link>
