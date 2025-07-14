@@ -655,11 +655,9 @@ export const fetchReservations = async () => {
         profileId: user.id,
       },
     },
-
     orderBy: {
-      createdAt: 'desc', // or 'asc' for ascending order
+      createdAt: 'desc',
     },
-
     include: {
       property: {
         select: {
