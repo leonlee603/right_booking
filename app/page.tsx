@@ -16,7 +16,7 @@ export default async function HomePage({
         category={searchParamsResult?.category}
         search={searchParamsResult?.search}
       />
-      <Suspense fallback={<LoadingCards />}>
+      <Suspense key={searchParamsResult?.category || "all"} fallback={<LoadingCards />}>
         <PropertiesContainer
           category={searchParamsResult?.category}
           search={searchParamsResult?.search}
