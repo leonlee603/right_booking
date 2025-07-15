@@ -45,7 +45,7 @@ export default async function LinksDropdown() {
             if (link.label === 'admin' && !isAdminUser) return null;
             return (
               <DropdownMenuItem key={link.href} asChild>
-                <Link href={link.href} className="capitalize w-full">
+                <Link href={link.href} className="capitalize w-full cursor-pointer">
                   {link.label}
                 </Link>
               </DropdownMenuItem>
