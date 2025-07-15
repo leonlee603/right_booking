@@ -1,13 +1,12 @@
 "use client";
 
-import Title from "@/components/properties/Title";
 import { Card, CardHeader } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export default function loading() {
   return (
     <>
-      <Title text="Your Reviews" />
+      <Skeleton className="w-40 h-8 rounded mb-4" />
       <section className="grid md:grid-cols-2 gap-8 mt-4 ">
         <ReviewLoadingCard />
         <ReviewLoadingCard />
