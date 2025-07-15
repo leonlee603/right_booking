@@ -1,12 +1,12 @@
 import Stripe from "stripe";
-import { type NextRequest, type NextResponse } from "next/server";
+import { type NextRequest } from "next/server";
 import db from "@/utils/db";
 import { formatDate } from "@/utils/format";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
 
-export const POST = async (req: NextRequest, res: NextResponse) => {
-  console.log(res);
+export const POST = async (req: NextRequest) => {
+  // console.log(res);
   const requestHeaders = new Headers(req.headers);
   const origin = requestHeaders.get("origin");
 

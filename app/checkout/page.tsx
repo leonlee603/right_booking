@@ -2,7 +2,7 @@
 
 import axios from "axios";
 import { useSearchParams } from "next/navigation";
-import React, { useCallback } from "react";
+import React, { Suspense, useCallback } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import {
   EmbeddedCheckoutProvider,
@@ -14,6 +14,15 @@ const stripePromise = loadStripe(
 );
 
 export default function CheckPage() {
+  return (
+    // You could have a loading skeleton as the `fallback` too
+    <Suspense>
+      <CheckPageWrapper />
+    </Suspense>
+  )
+}
+
+function CheckPageWrapper() {
   const searchParams = useSearchParams();
 
   const bookingId = searchParams.get("bookingId");
