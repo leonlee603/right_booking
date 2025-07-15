@@ -1,12 +1,12 @@
 import Link from "next/link";
 import { Button } from "../ui/button";
-import { LuTent } from "react-icons/lu";
+import { AiOutlineShop } from "react-icons/ai";
 
 export default function Logo() {
   return (
-    <Button size="icon" asChild>
+    <Button size="icon" className="rounded-full" asChild>
       <Link href="/">
-        <LuTent className="w-6 h-6" />
+        <AiOutlineShop className="w-6 h-6" />
       </Link>
     </Button>
   );
