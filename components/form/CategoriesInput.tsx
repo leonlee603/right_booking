@@ -22,13 +22,13 @@ export default function CategoriesInput({ defaultValue }: { defaultValue?: strin
         name={name}
         required
       >
-        <SelectTrigger id={name} className="w-full">
+        <SelectTrigger id={name} className="w-full cursor-pointer">
           <SelectValue />
         </SelectTrigger>
         <SelectContent>
           {categories.map((item) => {
             return (
-              <SelectItem key={item.label} value={item.label}>
+              <SelectItem key={item.label} value={item.label} className="w-full cursor-pointer">
                 <span className='flex items-center gap-2'>
                   <item.icon /> {item.label}
                 </span>

@@ -43,7 +43,9 @@ export default function CounterInput({
               variant="outline"
               size="icon"
               type="button"
+              disabled={count <= 0}
               onClick={decreaseCount}
+              className="cursor-pointer"
             >
               <LuMinus className="w-5 h-5 text-primary" />
             </Button>
@@ -53,6 +55,7 @@ export default function CounterInput({
               size="icon"
               type="button"
               onClick={increaseCount}
+              className="cursor-pointer"
             >
               <LuPlus className="w-5 h-5 text-primary" />
             </Button>

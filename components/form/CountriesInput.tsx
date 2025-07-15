@@ -22,13 +22,13 @@ export default function CountriesInput({ defaultValue }: { defaultValue?: string
         name={name}
         required
       >
-        <SelectTrigger id={name} className="w-full">
+        <SelectTrigger id={name} className="w-full cursor-pointer">
           <SelectValue />
         </SelectTrigger>
         <SelectContent>
           {formattedCountries.map((item) => {
             return (
-              <SelectItem key={item.code} value={item.code}>
+              <SelectItem key={item.code} value={item.code} className="cursor-pointer">
                 <span className="flex items-center gap-2">
                   <Flag code={item.code} style={{ width: 20, height: 20 }} /> {item.name}
                 </span>

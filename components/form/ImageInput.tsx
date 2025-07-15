@@ -12,7 +12,7 @@ export default function ImageInput() {
         type='file'
         required
         accept='image/*'
-        className='max-w-xs'
+        className='max-w-xs cursor-pointer'
       />
     </div>
   )
