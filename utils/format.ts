@@ -3,7 +3,7 @@ export const formatCurrency = (amount: number | null) => {
 
   return new Intl.NumberFormat("en-US", {
     style: "currency",
-    currency: "USD",
+    currency: "HKD",
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   }).format(value);
