@@ -32,7 +32,7 @@ export default function NavSearch() {
     <Input
       type="search"
       placeholder="find a property..."
-      className="max-w-xs dark:bg-muted "
+      className="max-w-full sm:max-w-xs dark:bg-muted "
       onChange={(e) => {
         setSearch(e.target.value);
         handleSearch(e.target.value);

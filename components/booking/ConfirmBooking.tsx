@@ -30,7 +30,7 @@ export default function ConfirmBooking() {
   return (
     <section>
       <FormContainer action={createBooking}>
-        <SubmitButton text="Reserve" className="w-full" />
+        <SubmitButton text="Reserve" className="w-full cursor-pointer" />
       </FormContainer>
     </section>
   );

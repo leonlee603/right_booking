@@ -12,6 +12,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/navbar/Navbar";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
+import Footer from "@/components/footer/Footer";
 
 
 const geistSans = Geist({
@@ -38,7 +39,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
         >
           <ThemeProvider
             attribute="class"
@@ -47,7 +48,8 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <Navbar />
-            <main className="container py-10">{children}</main>
+            <main className="container py-10 flex-1">{children}</main>
+            <Footer />
           </ThemeProvider>
           <Toaster />
         </body>

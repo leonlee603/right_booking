@@ -12,7 +12,7 @@ export default function Navbar() {
         <Suspense>
           <NavSearch />
         </Suspense>
-        <div className="flex gap-4 items-center">
+        <div className="flex gap-4 items-center absolute sm:relative right-8 sm:right-0">
           <DarkMode />
           <LinksDropdown />
         </div>
