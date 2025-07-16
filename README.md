@@ -10,6 +10,6 @@ A booking website for short-term homestay like airbnb.
 - Database: Supabase
 - Validation: Zod
 
-## The website is hosted on Vercel
+## Project is hosted on Vercel
 
-Feel free to check out my website [here](https://right-booking.vercel.app/)!
+You can check the demo [here](https://right-booking.vercel.app/)!
