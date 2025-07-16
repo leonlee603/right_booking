@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { amenities, Amenity } from "@/utils/amenities";
 
@@ -27,6 +27,9 @@ export default function AmenitiesInput({
       });
     });
   };
+  useEffect(() => {
+    setSelectedAmenities(amenitiesWithIcons || amenities);
+  }, [defaultValue]);
 
   return (
     <section>

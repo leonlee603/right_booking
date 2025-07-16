@@ -160,7 +160,7 @@ export const updateProfileImageAction = async (
 export const createPropertyAction = async (
   prevState: unknown,
   formData: FormData
-): Promise<{ message: string }> => {
+): Promise<{ message: string, payload?: FormData }> => {
   const user = await getAuthUser();
 
   try {
@@ -179,7 +179,11 @@ export const createPropertyAction = async (
       },
     });
   } catch (error) {
-    return renderError(error);
+    // return renderError(error);
+    return {
+      message: error instanceof Error ? error.message : "An error occurred",
+      payload: formData
+    };
   }
   redirect("/");
 };
@@ -749,7 +753,7 @@ export const fetchChartsData = async () => {
 
 export const fetchReservationStats = async () => {
   const user = await getAuthUser();
-  
+
   const properties = await db.property.count({
     where: {
       profileId: user.id,
